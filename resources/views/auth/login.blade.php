@@ -59,7 +59,7 @@
                                         Remember Me
                                     </label>
                                 </div>
-                                <a href="#" class="text-decoration-none small fw-bold text-accent">Forgot Password?</a>
+                                <a href="{{ route ('forget.password.get') }}" class="text-decoration-none small fw-bold text-accent">Forgot Password? <a href="http://"></a></a>
                             </div>
 
                             <!-- Submit Button -->
