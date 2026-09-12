@@ -69,6 +69,9 @@
     background: linear-gradient(-45deg, #FF3366, #FF9933, #33CCFF, #9933FF);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
+    min-height: 100vh;
+    padding-top: 100px; /* Mendorong konten ke bawah agar tidak tertutup navbar */
+    padding-bottom: 40px; /* Memberi jarak aman di bagian bawah */
 }
 
 @keyframes gradientBG {
