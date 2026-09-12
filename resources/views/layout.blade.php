@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,9 +16,7 @@
         body {
             margin: 0;
             font-family: 'Poppins', sans-serif;
-            background-color: #f5f8fa; /* Fallback background */
-            /* Hindari konten tertutup oleh fixed navbar */
-            padding-top: 76px;
+            background-color: #f5f8fa;
         }
 
         /* Desain Navbar Glassmorphism */
@@ -62,43 +61,47 @@
         }
     </style>
 </head>
+
 <body>
 
-<!-- Menambahkan fixed-top agar navbar melayang di atas background -->
-<nav class="navbar navbar-expand-lg glass-navbar fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">Laravel</a>
+    <!-- Menambahkan fixed-top agar navbar melayang di atas background -->
+    <nav class="navbar navbar-expand-lg glass-navbar fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url('/') }}">Laravel</a>
 
-        <!-- Data attributes untuk BS5 menggunakan data-bs-* -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+            <!-- Data attributes untuk BS5 menggunakan data-bs-* -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Di BS5, ml-auto diganti menjadi ms-auto -->
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                @guest
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">Register</a>
-                    </li>
-                @else
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('logout') }}">Logout</a>
-                    </li>
-                @endguest
-            </ul>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Di BS5, ml-auto diganti menjadi ms-auto -->
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    @guest
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">Register</a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('logout') }}">Logout</a>
+                        </li>
+                    @endguest
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
-<!-- Area Konten Utama -->
-@yield('content')
+    <!-- Area Konten Utama -->
+    @yield('content')
 
-<!-- Bootstrap 5 JS Bundle (Termasuk Popper.js untuk dropdown/collapse) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap 5 JS Bundle (Termasuk Popper.js untuk dropdown/collapse) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>
