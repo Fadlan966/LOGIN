@@ -1,85 +1,54 @@
 <?php
 
-
-
 namespace App\Http\Controllers\Auth;
 
-
-
 use App\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
-
-use Illuminate\Support\Facades\Auth;
-
-use Session;
-
 use App\Models\User;
-
-use Hash;
-
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
-use Illuminate\Http\RedirectResponse;
-
-
-
 class AuthController extends Controller
-
 {
-
     /**
-
      * Write code on Method
 
      *
 
      * @return response()
-
      */
-
     public function index(): View
-
     {
 
         return view('auth.login');
 
     }
 
-
-
     /**
-
      * Write code on Method
 
      *
 
      * @return response()
-
      */
-
     public function registration(): View
-
     {
 
         return view('auth.registration');
 
     }
 
-
-
     /**
-
      * Write code on Method
 
      *
 
      * @return response()
-
      */
-
     public function postLogin(Request $request): RedirectResponse
-
     {
 
         $request->validate([
@@ -90,38 +59,27 @@ class AuthController extends Controller
 
         ]);
 
-
-
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
 
             return redirect()->intended('dashboard')
-
-                        ->withSuccess('You have Successfully loggedin');
+                ->withSuccess('You have Successfully loggedin');
 
         }
 
-
-
-        return redirect("login")->withSuccess('Oppes! You have entered invalid credentials');
+        return redirect('login')->withSuccess('Oppes! You have entered invalid credentials');
 
     }
 
-
-
     /**
-
      * Write code on Method
 
      *
 
      * @return response()
-
      */
-
     public function postRegistration(Request $request): RedirectResponse
-
     {
 
         $request->validate([
@@ -134,98 +92,67 @@ class AuthController extends Controller
 
         ]);
 
-
-
         $data = $request->all();
 
         $check = $this->create($data);
 
-
-
-        return redirect("dashboard")->withSuccess('Great! You have Successfully loggedin');
+        return redirect('dashboard')->withSuccess('Great! You have Successfully loggedin');
 
     }
 
-
-
     /**
-
      * Write code on Method
 
      *
 
      * @return response()
-
      */
-
-    public function dashboard(): RedirectResponse
-
+    public function dashboard(): View|RedirectResponse
     {
-
-        if(Auth::check()){
-
+        if (Auth::check()) {
             return view('dashboard');
-
         }
 
-
-
-        return redirect("login")->withSuccess('Opps! You do not have access');
-
+        return redirect('login')->withSuccess('Oops! You do not have access');
     }
 
-
-
     /**
-
      * Write code on Method
 
      *
 
      * @return response()
-
      */
-
     public function create(array $data)
-
     {
 
-      return User::create([
+        return User::create([
 
-        'name' => $data['name'],
+            'name' => $data['name'],
 
-        'email' => $data['email'],
+            'email' => $data['email'],
 
-        'password' => Hash::make($data['password'])
+            'password' => Hash::make($data['password']),
 
-      ]);
+        ]);
 
     }
 
-
-
     /**
-
      * Write code on Method
 
      *
 
      * @return response()
-
      */
-
     public function logout(): RedirectResponse
-
     {
 
         Session::flush();
 
         Auth::logout();
 
-
-
         return Redirect('login');
 
     }
-
 }
